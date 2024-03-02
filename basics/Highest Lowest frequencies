@@ -1,0 +1,50 @@
+vector<int> getFrequencies(vector<int>& v) {
+    // Write Your Code Here
+    map<int, int> m;
+    int minimum, maximum;
+    pair<int, int> minA= make_pair(0,INT_MAX);
+    pair<int, int> maxB= make_pair(0,INT_MIN);
+
+    for(int i=0; i<v.size(); i++){
+        if(m.count(v[i])==0) m[v[i]] =1;
+        else m[v[i]]++;
+    }
+
+    for(auto c:m){
+        if (minA.second == c.second && minA.first<c.first) {
+          minimum = minA.first;
+        }
+        else if (minA.second == c.second && minA.first>c.first) {
+            minimum = c.first;
+            minA= make_pair(c.first, c.second);
+        }
+        else if (minA.second < c.second){
+            minimum = minA.first;
+        }
+        else{
+            minimum = c.first;
+            minA= make_pair(c.first, c.second);
+        }
+
+
+        if (maxB.second==c.second && maxB.first<c.first) {
+          maximum = maxB.first;
+        }
+        else if (maxB.second == c.second && maxB.first>c.first) {
+            maximum = c.first;
+            maxB= make_pair(c.first, c.second);
+        }
+        else if (maxB.second > c.second){
+            maximum = maxB.first;
+        }
+        else{
+            maximum = c.first;
+            maxB= make_pair(c.first, c.second);
+        }
+    }
+
+    vector<int> res;
+    res.push_back(maximum);
+    res.push_back(minimum);
+    return res;
+}

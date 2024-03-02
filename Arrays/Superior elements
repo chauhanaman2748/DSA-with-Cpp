@@ -1,0 +1,44 @@
+vector<int> superiorElements(vector<int> &a)
+{
+    // Write your code here.
+
+    vector<int> v;
+    v.push_back(a[0]);
+
+    for (int i = 1; i < a.size(); i++)
+    {
+        while (v.back() <= a[i] && !v.empty())
+        {
+            v.pop_back();
+        }
+        v.push_back(a[i]);
+    }
+    reverse(v.begin(), v.end());
+    return v;
+}
+
+vector<int> superiorElements(vector<int> &a)
+{
+
+    // Write your code here.
+
+    vector<int> ans;
+
+    int maxi = INT_MIN;
+
+    for (int i = a.size() - 1; i >= 0; i--)
+    {
+
+        if (a[i] > maxi)
+        {
+
+            ans.push_back(a[i]);
+        }
+
+        maxi = max(maxi, a[i]);
+    }
+
+    sort(ans.begin(), ans.end());
+
+    return ans;
+}

@@ -1,0 +1,41 @@
+class Solution
+{
+public:
+    string reverseWords(string s)
+    {
+        stack<string> st;
+        string temp = "";
+
+        for (auto ch : s)
+        {
+            if (ch != ' ')
+                temp += ch;
+            else if (ch == ' ' && temp != "")
+            {
+                st.push(temp);
+                temp = "";
+            }
+            else
+                continue;
+        }
+        st.push(temp);
+
+        string ans = "";
+        while (!st.empty())
+        {
+            ans = ans + st.top() + ' ';
+            st.pop();
+        }
+
+        int i = 0, j = ans.size() - 1;
+        while (i < j && (ans[i] == ' ' || ans[j] == ' '))
+        {
+            if (ans[i] == ' ')
+                i++;
+            if (ans[j] == ' ')
+                j--;
+        }
+
+        return ans.substr(i, j - i + 1);
+    }
+};

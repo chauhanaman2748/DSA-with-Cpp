@@ -1,0 +1,24 @@
+int longestSuccessiveElements(vector<int> &a)
+{
+    // Write your code here.
+    if (a.size() == 1)
+        return 1;
+    sort(a.begin(), a.end());
+    int max = 1, res = 0;
+    for (int i = 0; i < a.size(); i++)
+    {
+        if (a[i] + 1 == a[i + 1] && i != a.size() - 1)
+        {
+            max++;
+        }
+        else
+        {
+            if (max > res)
+                res = max;
+            max = 1;
+        }
+    }
+    if (max > res)
+        res = max;
+    return res;
+}

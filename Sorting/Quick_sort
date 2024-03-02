@@ -1,0 +1,44 @@
+/*
+    The function is called with the parameters:
+    quickSort(input, 0, size - 1);
+
+*/
+
+// Time complexity is O(nlog'n') and Space complexity is O(1).
+
+int partitionArray(int input[], int start, int end)
+{
+    // Write your code here
+    int low = start, high = end, pi = input[start];
+    while (low <= high)
+    {
+        while (input[low] <= pi && low <= end)
+            low++;
+        while (input[high] > pi && high >= start)
+            high--;
+        if (low <= high)
+        {
+            swap(input[low], input[high]);
+            low++;
+            high--;
+        }
+    }
+    swap(input[start], input[high]);
+    return high;
+}
+
+void quickSort(int input[], int start, int end)
+{
+    /*
+        Don't write main().
+        Don't read input, it is passed as function argument.
+        Change in the given array itself.
+        Taking input and printing output is handled automatically.
+    */
+    if (start >= end)
+        return;
+
+    int pi = partitionArray(input, start, end);
+    quickSort(input, start, pi - 1);
+    quickSort(input, pi + 1, end);
+}

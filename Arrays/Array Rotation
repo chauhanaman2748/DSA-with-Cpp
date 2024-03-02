@@ -1,0 +1,6 @@
+// Right Rotation:
+k = k % nums.size();
+std::rotate(nums.rbegin(), nums.rbegin() + k, nums.rend());
+
+// Left Rotation:
+std::rotate(nums.begin(), nums.begin() + k, nums.end());

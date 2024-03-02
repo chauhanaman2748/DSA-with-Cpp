@@ -1,0 +1,38 @@
+// O(sqrt(min(n, m)))
+
+int calcGCD(int n, int m)
+{
+    // Write your code here.
+    int min = (n <= m) ? n : m;
+    int hcf = 1;
+
+    for (int i = 1; i * i <= min; i++)
+    {
+        if (i != min / i)
+        {
+            if (n % (min / i) == 0 && m % (min / i) == 0 && (min / i) > hcf)
+            {
+                hcf = (min / i);
+            }
+        }
+        if (n % i == 0 && m % i == 0 && i > hcf)
+        {
+            hcf = i;
+        }
+    }
+
+    return hcf;
+}
+
+// O(log(min(n, m)))
+
+int calcGCD(int n, int m)
+{
+    while (m != 0)
+    {
+        int temp = m;
+        m = n % m;
+        n = temp;
+    }
+    return n;
+}

@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+
+string read(int n, vector<int> book, int target)
+{
+    // Write your code here.
+    map<int, int> m;
+    for (int i = 0; i < n; i++)
+    {
+        if (m.count(target - book[i]))
+            return "YES";
+        m[book[i]] = i;
+    }
+    return "NO";
+}

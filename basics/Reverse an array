@@ -1,0 +1,36 @@
+// O(n) :
+
+void reverseArrayHelper(int start, int end, vector<int> &nums) {
+    if (start >= end) {
+        return;
+    }
+
+    swap(nums[start], nums[end]);
+
+    reverseArrayHelper(start + 1, end - 1, nums);
+}
+
+
+vector<int> reverseArray(int n, vector<int> &nums)
+{
+    // Write your code here.
+    int start = 0;
+    int end = n - 1;
+
+    reverseArrayHelper(start, end, nums);
+    return nums;
+}
+
+
+// O(n²) :
+
+vector<int> reverseArray(int n, vector<int> &nums)
+{
+    // Write your code here.
+    vector<int> v;
+    if(n==0) return {};
+    if(n>1) v = reverseArray(n-1,nums);
+    if(n==1) v.emplace_back(nums[n-1]);
+    else v.emplace(v.begin(),nums[n-1]);
+    return v;
+}

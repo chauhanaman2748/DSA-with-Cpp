@@ -1,0 +1,21 @@
+bool checkArmstrong(int n)
+{
+    // Write your code here
+    int num = n, sum = 0, len = 0;
+
+    while (n > 0)
+    {
+        len++;
+        n = n / 10;
+    }
+
+    n = num;
+
+    while (n > 0)
+    {
+        sum = sum + pow((n % 10), len);
+        n = n / 10;
+    }
+
+    return (sum == num) ? true : false;
+}

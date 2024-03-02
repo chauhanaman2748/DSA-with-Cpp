@@ -1,0 +1,11 @@
+bool palindrome(int n)
+{
+    // Write your code here
+    int num1=0, num2=n;
+    while(n>0){
+        num1= (num1*10)+(n%10);
+        n=n/10;
+    }
+    if(num1==num2) return true;
+    else return false;
+}

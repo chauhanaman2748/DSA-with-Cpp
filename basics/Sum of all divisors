@@ -1,0 +1,31 @@
+//Complexity: O(n):
+int sumOfAllDivisors(int n){
+	// Write your code here.
+	
+	int ans = 0;
+	for(int i=1; i<=n; i++){
+		ans += (n/i)*i;
+	}
+	return ans;
+}
+
+//Complexity: O(sqrt'n'):
+public static int sumOfAllDivisors(int n){
+
+        // Write your code here.
+
+        int sum = 0;
+
+        for(int i=1; i<=Math.sqrt(n); i++){
+
+            int t1 = i*(n/i - i+1);
+
+            int t2 = (((n/i) * (n/i+1)) / 2) - ((i*(i+1)) / 2);
+
+            sum = sum + t1+t2;
+
+        }
+
+        return sum;
+
+    }
