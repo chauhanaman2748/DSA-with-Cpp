@@ -1,0 +1,38 @@
+Node *addOne(Node *head)
+{
+    Node* cur = head;
+    Node* prev = nullptr;
+
+    while(cur!=nullptr){
+        Node* next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur= next;
+    }
+
+    cur = prev;
+    int carry =1;
+
+    while(cur!=nullptr){
+        cur->data += carry;
+        carry = cur->data / 10;
+        cur->data = cur->data%10;
+        
+        if (cur->next == nullptr && carry != 0) {
+          cur->next = new Node(carry);
+          carry=0;
+        }
+        cur = cur->next;
+    }
+
+    cur = prev;
+    prev = nullptr;
+    while(cur!=nullptr){
+        Node* next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur= next;
+    }
+
+    return prev;
+}

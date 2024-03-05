@@ -1,0 +1,43 @@
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node()
+            {
+                this->data = 0;
+                next = NULL;
+            }
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+            }
+            Node(int data, Node* next)
+            {
+                this->data = data;
+                this->next = next;
+            }
+        };
+        
+
+*****************************************************************/
+Node* reverseLL(Node *head){
+    if(head== nullptr || head->next== nullptr) return head;
+
+    Node* small = reverseLL(head->next);
+    head->next->next=head;
+    head->next=NULL;
+    return small;
+}
+
+
+Node* reverseLinkedList(Node *head)
+{
+    // Write your code here
+    return reverseLL(head);
+}

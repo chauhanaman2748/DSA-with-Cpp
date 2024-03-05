@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+    class Node
+    {
+    public:
+        int data;
+        Node *next;
+        Node()
+        {
+            this->data = 0;
+            next = NULL;
+        }
+        Node(int data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+        Node(int data, Node* next)
+        {
+            this->data = data;
+            this->next = next;
+        }
+    };
+
+*****************************************************************/
+
+bool isPalindrome(Node *head)
+{
+    // write your code here
+    
+    Node* temp= head;
+    int count=1;
+
+    while (temp->next != nullptr) {
+      count++;
+      temp=temp->next;
+    }
+
+    stack<int> st;
+    temp= head;
+
+    int i=0;
+    while(i<count/2){
+        st.push(temp->data);
+        temp=temp->next;
+        i++;
+    }
+    if (count % 2 == 1) {
+        i++;
+        temp=temp->next;
+    }
+
+    while(i<count){
+        if(st.top()!=temp->data) return false;
+        st.pop();
+        temp=temp->next;
+        i++;
+    }
+
+    return true;
+}

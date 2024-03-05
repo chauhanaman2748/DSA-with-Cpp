@@ -1,0 +1,28 @@
+Node *sort(Node *head, int val)
+{
+    if (head->next == nullptr)
+    {
+        head->data = val;
+        return head;
+    }
+    Node *newLL = sort(head->next, head->next->data);
+    head->next = newLL;
+    Node *temp = head;
+
+    while (temp->next != nullptr && temp->data > temp->next->data)
+    {
+        int var = temp->data;
+        temp->data = temp->next->data;
+        temp->next->data = var;
+        temp = temp->next;
+    }
+    return head;
+}
+
+Node *sortList(Node *head)
+{
+    // Write your code here.
+    if (head == nullptr)
+        return nullptr;
+    return sort(head, head->data);
+}
