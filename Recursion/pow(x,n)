@@ -1,0 +1,30 @@
+// reduced space complexity
+double myPow(double x, int n)
+{
+    if (n == 0)
+        return 1;
+    if (n == 1)
+        return x;
+
+    double half = myPow(x, n / 2);
+    double result = half * half;
+
+    if (n % 2 == 1)
+    {
+        result *= x;
+    }
+    else if (n % 2 == -1)
+    {
+        result /= x;
+    }
+
+    return result;
+}
+
+// second approach
+double myPow(double x, int n)
+{
+    if (n == 0)
+        return 1;
+    return n > 0 ? myPow(x, n - 1) * x : myPow(x, n + 1) / x;
+}
